@@ -2,5 +2,5 @@
 
 function debug($arr)
 {
-	echo '<pre style =" color: #cc0000;">' . print_r($arr, true) . '</pre>';
+	echo '<pre class="debug" style =" color: #cc0000;">' . print_r($arr, true) . '</pre>';
 }
