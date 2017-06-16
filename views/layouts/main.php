@@ -8,6 +8,7 @@ use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use yii\bootstrap\Modal;
 use app\assets\AppAsset;
 use app\assets\LthanAsset;
 
@@ -15,7 +16,7 @@ AppAsset::register($this);
 LthanAsset::register($this);
 ?>
 
-<?php $this->beginPage() ?>
+<?php $this->beginPage()?>
 <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
 <head>
@@ -71,7 +72,7 @@ LthanAsset::register($this);
 			<div class="row">
 				<div class="col-sm-4">
 					<div class="logo pull-left">
-						<a href="index.html"><img src="/images/home/logo.png" alt="" /></a>
+						<a href="/"><?= Html::img("@web/images/home/logo.png", ['alt' => 'Shop'])?></a>
 					</div>
 					<div class="btn-group pull-right">
 						<div class="btn-group">
@@ -103,7 +104,7 @@ LthanAsset::register($this);
 							<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
 							<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
 							<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-							<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+							<li><a id="cartBtn" href=""><i class="fa fa-shopping-cart"></i> Cart</a></li>
 							<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
 						</ul>
 					</div>
@@ -149,7 +150,9 @@ LthanAsset::register($this);
 				</div>
 				<div class="col-sm-3">
 					<div class="search_box pull-right">
-						<input type="text" placeholder="Search"/>
+                        <form method="get" action="/search">
+                            <input type="text" placeholder="Search" name="q">
+                        </form>
 					</div>
 				</div>
 			</div>
@@ -322,7 +325,20 @@ LthanAsset::register($this);
 
 </footer>
 <!-- /FOOTER -->
+<?php
 
+Modal::begin([
+    'header' => '<h2>Cart<h2>',
+    'id' => 'cart',
+    'size' => 'modal-lg',
+    'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Continue shopping</button>
+        <button type="button" class="btn btn-success">Checkout</button>
+        <button id="clearCart" type="button" class="btn btn-danger">Clear Cart</button>'
+]);
+
+Modal::end();
+
+?>
 
 <?php $this->endBody() ?>
 </body>

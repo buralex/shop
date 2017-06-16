@@ -8,6 +8,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
 	'language' => 'en',
+	'defaultRoute' => 'category/index',
 //	'layout' => 'basic',
     'components' => [
         'request' => [
@@ -48,8 +49,12 @@ $config = [
 			'showScriptName' => false,
 			'enableStrictParsing' => false,
 			'rules' => [
-				'<action:(about|contact|login)>' => 'site/<action>'
+//				'<action:(about|contact|login)>' => 'site/<action>',
 //				'<action:(\w+)>' => 'site/<action>'
+				'category/<id:\d+>/page/<page:\d+>' => 'category/view',
+				'category/<id:\d+>' => 'category/view',
+				'product/<id:\d+>' => 'product/view',
+				'search' => 'category/search'
 			],
 		],
 

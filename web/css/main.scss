@@ -8,9 +8,8 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background:;
   position: relative;
-  font-weight:400px;
+  font-weight: 400;
 }
 
 ul li {
@@ -54,8 +53,9 @@ a#scrollUp {
   padding: 5px 10px;
   background: #FE980F;
   color: #FFF;
-  -webkit-animation: bounce 2s ease infinite;
-  animation: bounce 2s ease infinite;
+  margin-bottom: 40px;
+  //-webkit-animation: bounce 2s ease infinite;
+  //animation: bounce 2s ease infinite;
 }
 
 a#scrollUp i{
@@ -706,6 +706,11 @@ h2.title:before{
 	margin-left: -110px;
 }
 
+ul.catalog {
+  padding-left: 0;
+}
+
+
 .category-products .panel {
 	background-color: #FFFFFF;
 	border: 0px;
@@ -733,7 +738,8 @@ h2.title:before{
   border-top: 0 none;
 }
 
-.category-products .badge {
+.category-products .badge,
+.catalog .badge{
   background:none;
   border-radius: 10px;
   color: #696763;
@@ -746,6 +752,29 @@ h2.title:before{
   text-align: center;
   vertical-align: baseline;
   white-space: nowrap;
+}
+
+.catalog {
+
+  text-transform: uppercase;
+
+  & a {
+    color: rgb(51, 51, 51);
+    text-decoration: none;
+  }
+
+  & ul {
+    padding: 0 15px;
+  }
+
+  & > li {
+    padding: 5px 15px;
+
+    & > a {
+      font-weight: bold;
+    }
+  }
+
 }
 
 .panel-body ul{
@@ -829,7 +858,7 @@ h2.title:before{
   padding-right: 0;
 }
 
-.features_items{
+.featured_items{
 	overflow:hidden;
 }
 
@@ -899,7 +928,6 @@ h2.title {
   transition: height 500ms ease 0s;
   width: 100%;
   display: block;
-  opacity:;
 }
 
 .single-products:hover .product-overlay {
@@ -1165,7 +1193,10 @@ h2.title {
   margin-top: 10px;
 }
 
+.del-item {
+  cursor: pointer;
 
+}
 
 .view-product {
   position: relative;
@@ -1173,8 +1204,8 @@ h2.title {
 
 .view-product img {
   border: 1px solid #F7F7F0;
-  height: 380px;
-  width: 100%;
+  //height: 380px;
+  //width: 100%;
 }
 
 .view-product h3 {
@@ -2141,7 +2172,7 @@ h2.title {
 
 .rating-area {
   border: 1px solid #F7F7F0;
-  direction: block;
+  display: block;
   overflow: hidden;
 }
 
