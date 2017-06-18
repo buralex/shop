@@ -101,11 +101,18 @@ LthanAsset::register($this);
 				<div class="col-sm-8">
 					<div class="shop-menu pull-right">
 						<ul class="nav navbar-nav">
-							<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+
 							<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-							<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+							<li><a href="/cart/view"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 							<li><a id="cartBtn" href=""><i class="fa fa-shopping-cart"></i> Cart</a></li>
-							<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+
+							<?php if (Yii::$app->user->isGuest): ?>
+                                <li><a href="/site/login/"><i class="fa fa-lock"></i> Log in</a></li>
+							<?php else: ?>
+                                <li><a href="/admin"><i class="fa fa-user"></i>Account: <?= Yii::$app->user->identity['username'] ?></a></li>
+                                <li><a href="/site/logout/"><i class="fa fa-unlock"></i> Log out</a></li>
+							<?php endif; ?>
+
 						</ul>
 					</div>
 				</div>
@@ -127,7 +134,7 @@ LthanAsset::register($this);
 					</div>
 					<div class="mainmenu pull-left">
 						<ul class="nav navbar-nav collapse navbar-collapse">
-							<li><a href="index.html" class="active">Home</a></li>
+							<li><a href="/" class="active">Home</a></li>
 							<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
 								<ul role="menu" class="sub-menu">
 									<li><a href="shop.html">Products</a></li>
@@ -163,7 +170,6 @@ LthanAsset::register($this);
 
 <!-- CONTENT -->
 <?= $content ?>
-<?php //debug($content); ?>
 <!-- /CONTENT -->
 
 <!-- FOOTER -->
@@ -332,7 +338,7 @@ Modal::begin([
     'id' => 'cart',
     'size' => 'modal-lg',
     'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Continue shopping</button>
-        <button type="button" class="btn btn-success">Checkout</button>
+        <a href="/cart/view" class="btn btn-success">Checkout</a>
         <button id="clearCart" type="button" class="btn btn-danger">Clear Cart</button>'
 ]);
 

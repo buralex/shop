@@ -60,6 +60,12 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
+			if ($this->rememberMe) {
+				$u = $this->getUser();
+				$u->generateAuthKey(); // rewrite auth key
+				$u->save();
+			}
+
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
         return false;
@@ -78,4 +84,18 @@ class LoginForm extends Model
 
         return $this->_user;
     }
+
+	/**
+	 * Sets labels for form
+	 *
+	 */
+	public function attributeLabels()
+	{
+		return [
+			'username' => 'USERNAME',
+			'password' => 'PASSWORD',
+			'rememberMe' => 'remember me',
+
+		];
+	}
 }

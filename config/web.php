@@ -9,6 +9,13 @@ $config = [
     'bootstrap' => ['log'],
 	'language' => 'en',
 	'defaultRoute' => 'category/index',
+	'modules' => [
+		'admin' => [
+			'class' => 'app\modules\admin\Module',
+			'layout' => 'admin',
+			'defaultRoute' => 'order/index',
+		],
+	],
 //	'layout' => 'basic',
     'components' => [
         'request' => [
@@ -22,6 +29,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+//			'loginUrl' => 'cart/view'  // when click login - redirect to cart/view
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -31,7 +39,15 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+			'transport' => [
+				'class' => 'Swift_SmtpTransport',
+				'host' => 'smtp.gmail.com',
+				'username' => 'shoptesttask@gmail.com',
+				'password' => 'test123temp',
+				'port' => '587',
+				'encryption' => 'tls',
+			],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

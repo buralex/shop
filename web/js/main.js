@@ -22,10 +22,11 @@ function showCart(cart) {
 
 $('.add-to-cart').on('click', function (e) {
     e.preventDefault();
-    var id = $(this).data('id');
+    var id = $(this).data('id'),
+        qty = $('#qty').val();
     $.ajax({
         url: '/cart/add',
-        data: {id: id},
+        data: {id: id, qty: qty},
         type: 'GET',
         success: function (res) {
             if (!res) throw new Error('Error add to cart!');
