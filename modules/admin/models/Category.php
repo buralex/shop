@@ -3,6 +3,9 @@
 namespace app\modules\admin\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+
+
 
 /**
  * This is the model class for table "{{%category}}".
@@ -13,15 +16,23 @@ use Yii;
  * @property string $keywords
  * @property string $description
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends ActiveRecord
 {
     /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%category}}';
-    }
+ * @inheritdoc
+ */
+	public static function tableName()
+	{
+		return '{{%category}}';
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function getCategory()
+	{
+		return $this->hasOne(Category::className(), ['id' => 'parent_id']);
+	}
 
     /**
      * @inheritdoc
@@ -41,8 +52,8 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'parent_id' => 'Parent ID',
+            'id' => 'Category ID',
+            'parent_id' => 'Parent category',
             'name' => 'Name',
             'keywords' => 'Keywords',
             'description' => 'Description',

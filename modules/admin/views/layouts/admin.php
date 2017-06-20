@@ -134,14 +134,14 @@ LthanAsset::register($this);
 								<li><a href="/" class="active">Home</a></li>
 								<li class="dropdown"><a href="#">Categories<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
-										<li><a href="/category/index">Category list</a></li>
-										<li><a href="/category/create">Add category</a></li>
+										<li><a href="/admin/category/index">Category list</a></li>
+										<li><a href="/admin/category/create">Add category</a></li>
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#">Products<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
-										<li><a href="/product/index">Product List</a></li>
-                                        <li><a href="/product/create">Add category</a></li>
+										<li><a href="/admin/product/index">Product List</a></li>
+                                        <li><a href="/admin/product/create">Add product</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -162,6 +162,20 @@ LthanAsset::register($this);
 
 	<!-- CONTENT -->
     <div class="container">
+		<?php if ( Yii::$app->session->hasFlash('success') ):?>
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<?= Yii::$app->session->getFlash('success') ?>
+            </div>
+		<?php endif; ?>
+
+		<?php if ( Yii::$app->session->hasFlash('error') ):?>
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<?= Yii::$app->session->getFlash('error') ?>
+            </div>
+		<?php endif; ?>
+
 		<?= $content ?>
     </div>
 	<!-- /CONTENT -->

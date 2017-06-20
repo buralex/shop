@@ -139,7 +139,6 @@ use app\components\MenuWidget;
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
-<!--                                                <img src="/--><?//= "/images/products/{$hit->img}" ?><!--" alt="--><?//= $hit->name ?><!--" />-->
 													<?= Html::img("@web/images/products/{$hit->img}", ['alt' => $hit->name])?>
                                                     <h2>$<?= $hit->price ?></h2>
                                                     <p><a href="/product/<?= $hit->id ?>"><?= $hit->name ?></a></p>

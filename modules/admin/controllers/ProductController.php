@@ -3,16 +3,17 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\modules\admin\models\Category;
+use app\modules\admin\models\Product;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
- * CategoryController implements the CRUD actions for Category model.
+ * ProductController implements the CRUD actions for Product model.
  */
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,13 +31,13 @@ class CategoryController extends Controller
     }
 
     /**
-     * Lists all Category models.
+     * Lists all Product models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Category::find()->with('category'),
+            'query' => Product::find(),
         ]);
 
         return $this->render('index', [
@@ -45,7 +46,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Displays a single Category model.
+     * Displays a single Product model.
      * @param integer $id
      * @return mixed
      */
@@ -57,16 +58,16 @@ class CategoryController extends Controller
     }
 
     /**
-     * Creates a new Category model.
+     * Creates a new Product model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Category();
+        $model = new Product();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			Yii::$app->session->setFlash('success', "Category {$model->name} has been added.");
+			Yii::$app->session->setFlash('success', "Product {$model->name} has been added.");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -76,7 +77,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Updates an existing Category model.
+     * Updates an existing Product model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -86,8 +87,20 @@ class CategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+			$model->image = UploadedFile::getInstance($model, 'image');
+			if ($model->image) {
+				$model->upload();
+			}
+			unset($model->image);
+
+			$model->gallery = UploadedFile::getInstances($model, 'gallery');
+			$model->uploadGallery();
+
+			Yii::$app->session->setFlash('success', "Product {$model->name} has been updated.");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -95,7 +108,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Deletes an existing Category model.
+     * Deletes an existing Product model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -108,15 +121,15 @@ class CategoryController extends Controller
     }
 
     /**
-     * Finds the Category model based on its primary key value.
+     * Finds the Product model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Category the loaded model
+     * @return Product the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Category::findOne($id)) !== null) {
+        if (($model = Product::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

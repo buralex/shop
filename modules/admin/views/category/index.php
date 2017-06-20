@@ -22,7 +22,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'parent_id',
+//            'parent_id',
+			[
+				'attribute' => 'parent_id',
+                // $data->category - virtual property returned from Category->getCategory
+				'value' => function ($data) {
+                    return is_object($data->category) ? $data->category->name : 'self category';
+				},
+				'format' => 'html'
+			],
             'name',
             'keywords',
             'description',
