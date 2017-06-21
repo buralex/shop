@@ -4,7 +4,7 @@
 
 use yii\helpers\Html;
 use app\components\MenuWidget;
-//use yii\helpers\Url;
+use yii\helpers\Url;
 
 ?>
 <section>
@@ -19,33 +19,6 @@ use app\components\MenuWidget;
 					</ul>
 					<!--/catalog_products-->
 
-					<div class="brands_products"><!--brands_products-->
-						<h2>Brands</h2>
-						<div class="brands-name">
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href=""> <span class="pull-right">(50)</span>Acne</a></li>
-								<li><a href=""> <span class="pull-right">(56)</span>Grüne Erde</a></li>
-								<li><a href=""> <span class="pull-right">(27)</span>Albiro</a></li>
-								<li><a href=""> <span class="pull-right">(32)</span>Ronhill</a></li>
-								<li><a href=""> <span class="pull-right">(5)</span>Oddmolly</a></li>
-								<li><a href=""> <span class="pull-right">(9)</span>Boudestijn</a></li>
-								<li><a href=""> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
-							</ul>
-						</div>
-					</div><!--/brands_products-->
-
-					<div class="price-range"><!--price-range-->
-						<h2>Price Range</h2>
-						<div class="well">
-							<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-							<b>$ 0</b> <b class="pull-right">$ 600</b>
-						</div>
-					</div><!--/price-range-->
-
-					<div class="shipping text-center"><!--shipping-->
-						<img src="/images/home/shipping.jpg" alt="" />
-					</div><!--/shipping-->
-
 				</div>
 			</div>
 
@@ -54,12 +27,63 @@ use app\components\MenuWidget;
             $gallery = $product->getImages();
             ?>
 
+            <div class="container">
+                <div id="main_area">
+                    <!-- Slider -->
+                    <div class="row">
+                        <div class="col-sm-6" id="slider-thumbs">
+                            <!-- Bottom switcher of slider -->
+                            <ul class="hide-bullets">
+                                <li class="col-sm-3">
+                                    <a class="thumbnail" id="carousel-selector-0">
+                                        <img src="http://placehold.it/150x150&text=zero">
+                                    </a>
+                                </li>
+
+                                <li class="col-sm-3">
+                                    <a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/150x150&text=1"></a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="col-xs-12" id="slider">
+                                <!-- Top part of the slider -->
+                                <div class="row">
+                                    <div class="col-sm-12" id="carousel-bounding-box">
+                                        <div class="carousel slide" id="myCarousel">
+                                            <!-- Carousel items -->
+                                            <div class="carousel-inner">
+                                                <div class="active item" data-slide-number="0">
+                                                    <img src="http://placehold.it/470x480&text=zero"></div>
+
+                                                <div class="item" data-slide-number="1">
+                                                    <img src="http://placehold.it/470x480&text=1"></div>
+
+                                            </div>
+                                            <!-- Carousel nav -->
+                                            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                            </a>
+                                            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/Slider-->
+                    </div>
+
+                </div>
+            </div>
+
 			<div class="col-sm-9 padding-right">
 				<div class="product-details"><!--product-details-->
 					<div class="col-sm-5">
 						<div class="view-product">
 							<img src="<?= $mainImg->getUrl() ?>" alt="" >
-							<h3>ZOOM</h3>
 						</div>
 						<div id="similar-product" class="carousel slide" data-ride="carousel">
 
@@ -69,7 +93,7 @@ use app\components\MenuWidget;
 									<?php if ($i % 3 == 0): ?>
 								    <div class="item <?php if ($i == 0) echo 'active'; ?>">
 									<?php endif;?>
-									    <a href=""><img src="<?= $img->getUrl('84x85') ?>" alt="" /></a>
+									    <a href=""><img src="<?= $img->getUrl('x84') ?>" alt="" /></a>
 									<?php $i++; if ($i % 3 == 0 || $i == $count): ?>
                                     </div>
 									<?php endif;?>
@@ -111,203 +135,15 @@ use app\components\MenuWidget;
 							<p><b>Condition:</b> New</p>
 							<p><b>Brand:</b> <a href="/category/<?= $product->category->id ?>"><?= $product->category->name ?></a></p>
 							<a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+                            <br>
+                            <p><?= $product->content ?></p>
 
-							<?= $product->content ?>
                         </div><!--/product-information-->
 					</div>
 				</div><!--/product-details-->
 
-				<div class="category-tab shop-details-tab"><!--category-tab-->
-					<div class="col-sm-12">
-						<ul class="nav nav-tabs">
-							<li><a href="#details" data-toggle="tab">Details</a></li>
-							<li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
-							<li><a href="#tag" data-toggle="tab">Tag</a></li>
-							<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
-						</ul>
-					</div>
-					<div class="tab-content">
-						<div class="tab-pane fade" id="details" >
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="/images/home/gallery1.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="/images/home/gallery2.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="/images/home/gallery3.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="/images/home/gallery4.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="tab-pane fade" id="companyprofile" >
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="/images/home/gallery1.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="/images/home/gallery3.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="/images/home/gallery2.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="/images/home/gallery4.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="tab-pane fade" id="tag" >
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="/images/home/gallery1.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="/images/home/gallery2.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="/images/home/gallery3.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="/images/home/gallery4.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="tab-pane fade active in" id="reviews" >
-							<div class="col-sm-12">
-								<ul>
-									<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-									<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-									<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-								</ul>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-								<p><b>Write Your Review</b></p>
-
-								<form action="#">
-										<span>
-											<input type="text" placeholder="Your Name"/>
-											<input type="email" placeholder="Email Address"/>
-										</span>
-									<textarea name="" ></textarea>
-									<b>Rating: </b> <img src="/images/product-details/rating.png" alt="" />
-									<button type="button" class="btn btn-default pull-right">
-										Submit
-									</button>
-								</form>
-							</div>
-						</div>
-
-					</div>
-				</div><!--/category-tab-->
-
-				<div class="recommended_items"><!--recommended_items-->
+                <!--recommended_items-->
+				<div class="recommended_items">
 					<h2 class="title text-center">recommended items</h2>
 
 					<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
@@ -322,7 +158,7 @@ use app\components\MenuWidget;
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="/images/products/<?= $hit->img; ?>" alt="<?= $hit->name; ?>" />
+												<img src="<?= $mainImg->getUrl() ?>" alt="<?= $hit->name; ?>" />
 												<h2>$<?= $hit->price; ?></h2>
 												<p><a href="/product/<?= $hit->id ?>"><?= $hit->name; ?></p>
 												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
@@ -343,7 +179,8 @@ use app\components\MenuWidget;
 							<i class="fa fa-angle-right"></i>
 						</a>
 					</div>
-				</div><!--/recommended_items-->
+				</div>
+                <!--/recommended_items-->
 
 			</div>
 		</div>

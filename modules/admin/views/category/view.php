@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'parent_id',
 			[
 				'attribute' => 'parent_id',
-				'value' => $model->category->name ? $model->category->name : 'self category',
+				'value' => is_object($model->category) ? $model->category->name : 'self category',
 				'format' => 'html'
 			],
             'name',

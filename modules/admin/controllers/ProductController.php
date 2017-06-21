@@ -135,4 +135,22 @@ class ProductController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+	/**
+	 *
+	 */
+	public function actionDeleteImg($id, $id_img)
+	{
+
+		$model = $this->findModel($id);
+
+		$images = $model->getImages();
+		foreach($images as $img){
+			if($img->id==$id_img){
+				$model->removeImage($img);
+			}
+		}
+		$success=true;
+		return json_encode($success);
+	}
 }

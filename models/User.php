@@ -4,8 +4,11 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\base\NotSupportedException;
+use yii\behaviors\TimestampBehavior;
+use yii\web\IdentityInterface;
 
-class User extends ActiveRecord implements \yii\web\IdentityInterface
+class User extends ActiveRecord implements IdentityInterface
 {
 	public static function tableName()
 	{
@@ -72,7 +75,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
 //        return $this->password === $password;
-		return Yii::$app->security->validatePassword($password, $this->password);
+		return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
 
 	/**
@@ -82,5 +85,15 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
 	public function generateAuthKey()
 	{
 		$this->auth_key = Yii::$app->security->generateRandomString(); // auth_key - in the table 'user'
+	}
+
+	/**
+	 * Generates password hash from password and sets it to the model
+	 *
+	 * @param string $password
+	 */
+	public function setPassword($password)
+	{
+		$this->password_hash = Yii::$app->security->generatePasswordHash($password);
 	}
 }

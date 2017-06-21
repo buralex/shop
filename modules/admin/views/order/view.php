@@ -56,7 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Sum</th>
-                <th>Delete</span></th>
             </tr>
             </thead>
             <tbody>

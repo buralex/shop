@@ -87,11 +87,99 @@ $('#cartBtn').on('click', function (e) {
 });
 
 /*------------------------------------------------------------------
+ delete product image
+ -----------------------------------------------------------------*/
+//клик на удалении
+$(document).on("click", '.delete_img', function (e) {
+    e.preventDefault();
+    var isTrue = confirm("Удалить изображение?");
+    if(isTrue==true){
+        var href=$(this).attr('href');
+        $(this).parent('div').remove();
+        $.get( href );
+    }
+});
+
+/*------------------------------------------------------------------------------
+ DEBOUNCE
+ ------------------------------------------------------------------------------*/
+Function.prototype.debounce = function (milliseconds) {
+    var baseFunction = this,
+        timer = null,
+        wait = milliseconds;
+
+    return function () {
+        var self = this,
+            args = arguments;
+
+        function complete() {
+            baseFunction.apply(self, args);
+            timer = null;
+        }
+
+        if (timer) {
+            clearTimeout(timer);
+        }
+
+        timer = setTimeout(complete, wait);
+    };
+};
+
+/* -----------------------------------------------------------------------------
+ STICKY FOOTER
+ ----------------------------------------------------------------------------- */
+
+function stickyFooter(footerContainer, wrapCont) {
+
+    function stick() {
+        var footerHeight = document.querySelector(footerContainer).offsetHeight;
+        document.querySelector(footerContainer).style.cssText = 'margin-top: -' + footerHeight + 'px;';
+        document.querySelector(wrapCont).style.cssText = 'padding-bottom: ' + footerHeight + 'px;';
+    }
+
+    window.addEventListener('load', function (event) {
+        stick()
+    }.debounce(10));
+    window.addEventListener('resize', function (event) {
+        stick()
+    }.debounce(10));
+
+}
+
+// initialization
+stickyFooter('#footer', '.main-wrapper');
+
+/*------------------------------------------------------------------
 
  -----------------------------------------------------------------*/
 var RGBChange = function () {
     $('#RGB').css('background', 'rgb(' + r.getValue() + ',' + g.getValue() + ',' + b.getValue() + ')')
 };
+
+/*-----------------------------------------
+ product detail carousel
+ -----------------------------------------*/
+
+$('#myCarousel').carousel({
+    interval: 5000
+});
+
+//Handles the carousel thumbnails
+$('[id^=carousel-selector-]').click(function () {
+    var id_selector = $(this).attr("id");
+    try {
+        var id = /-(\d+)$/.exec(id_selector)[1];
+        console.log(id_selector, id);
+        jQuery('#myCarousel').carousel(parseInt(id));
+    } catch (e) {
+        console.log('Regex failed!', e);
+    }
+});
+// When the carousel slides, auto update the text
+$('#myCarousel').on('slid.bs.carousel', function (e) {
+    var id = $('.item.active').data('slide-number');
+    $('#carousel-text').html($('#slide-content-'+id).html());
+});
 
 
 /*------------------------------------------------------------------

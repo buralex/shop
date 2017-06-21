@@ -24,7 +24,25 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-	<?php $img = $model->getImage(); ?>
+
+	<?php
+	$img = $model->getImage();
+	$gallery = $model->getImages();
+	$img_str='';
+
+    foreach($gallery as $img_g){
+
+        $url_delete = "/delete/{$model->id}/{$img_g->id}";
+
+        $img_str .= '<div class="image_update" >
+        <a class="delete_img" title="delete?" href="'.$url_delete.'" data-id="'.$img_g->id.'" ><span class="glyphicon glyphicon-remove"></span></a>
+        <img src=" ' . $img_g->getUrl('80x') . ' " alt="">
+        </div> ';
+    }
+
+
+    ?>
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -45,6 +63,11 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'image',
 				'value' => "<img src='{$img->getUrl()}'>",
 				'format' => 'html'
+			],
+			[
+				'attribute' => 'images',
+				'value' =>  $img_str,
+				'format' => 'html',
 			],
             //'hit',
 			[

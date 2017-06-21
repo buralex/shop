@@ -1,10 +1,24 @@
 @charset "UTF-8";
-/*************************
-*******Typography******
-**************************/
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700,100);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Abel);
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative; }
+
+.main-wrapper {
+  padding: 0 0 0 0;
+  min-width: 320px;
+  position: relative;
+  overflow: hidden;
+  min-height: 100%; }
+
+/*************************
+*******Typography******
+**************************/
 body {
   font-family: 'Roboto', sans-serif;
   position: relative;
@@ -2028,5 +2042,26 @@ h2.title {
 
 .contact-info .social-networks ul li a:hover {
   color: #FE980F; }
+
+.image_update {
+  position: relative;
+  display: inline-block; }
+  .image_update a {
+    position: absolute;
+    left: 0; }
+
+/*-----------------------------------------
+product detail carousel
+-----------------------------------------*/
+.hide-bullets {
+  list-style: none;
+  margin-left: -40px;
+  margin-top: 20px; }
+
+.thumbnail {
+  padding: 0; }
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+  width: 100%; }
 
 /*# sourceMappingURL=main.css.map */
