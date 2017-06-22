@@ -34,9 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
         $url_delete = "/delete/{$model->id}/{$img_g->id}";
 
-        $img_str .= '<div class="image_update" >
+        $img_str .= '&nbsp;&nbsp;&nbsp;&nbsp;<div class="image_update" >
         <a class="delete_img" title="delete?" href="'.$url_delete.'" data-id="'.$img_g->id.'" ><span class="glyphicon glyphicon-remove"></span></a>
-        <img src=" ' . $img_g->getUrl('80x') . ' " alt="">
+        <img src=" ' . $img_g->getUrl('x80') . ' " alt="">
         </div> ';
     }
 
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'category_id',
 			[
 				'attribute' => 'category_id',
-				'value' => $model->category->name,
+				'value' => is_object($model->category) ? $model->category->name : 'self category',
 				'format' => 'html'
 			],
             'name',
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'img',
 			[
 				'attribute' => 'image',
-				'value' => "<img src='{$img->getUrl()}'>",
+				'value' => "<img src='{$img->getUrl('x80')}'>",
 				'format' => 'html'
 			],
 			[

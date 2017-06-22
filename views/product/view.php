@@ -51,36 +51,26 @@ use yii\helpers\Url;
 
 
                                                         </div>
-                                                        <!-- Carousel nav -->
-                                                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                                                            <span class="glyphicon glyphicon-chevron-left"></span>
+
+                                                    </div>
+                                                    <!-- Carousel nav -->
+                                                    <div class="carousel-nav">
+                                                        <a class="carousel-left" href="#myCarousel" role="button" data-slide="prev">
+                                                            <span class="glyphicon glyphicon-menu-left"></span>
                                                         </a>
-                                                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                                        <a class="carousel-right" href="#myCarousel" role="button" data-slide="next">
+                                                            <span class="glyphicon glyphicon-menu-right"></span>
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12" id="slider-thumbs">
-                                        <!-- Bottom switcher of slider -->
-                                        <ul class="hide-bullets">
-											<?php $count = count($gallery); $i = 0; foreach($gallery as $img):?>
-                                                <li class="col-sm-3">
-                                                    <a class="thumbnail" id="carousel-selector-<?= $i ?>">
-                                                        <img src="<?= $img->getUrl() ?>">
-                                                    </a>
-                                                </li>
-												<?php $i++; endforeach; ?>
-                                        </ul>
-                                    </div>
                                 </div>
                                 <!--/Slider-->
 
                             </div>
                         </div>
-
 					</div>
 					<div class="col-sm-7">
 						<div class="product-information"><!--/product-information-->
@@ -98,6 +88,7 @@ use yii\helpers\Url;
 									<span>US $<?= $product->price ?></span>
 									<label>Quantity:</label>
 									<input type="text" value="1" id="qty">
+
 									<a href="#" data-id="<?= $product->id ?>" class="btn btn-fefault add-to-cart cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
@@ -108,10 +99,12 @@ use yii\helpers\Url;
 							<p><b>Brand:</b> <a href="/category/<?= $product->category->id ?>"><?= $product->category->name ?></a></p>
 							<a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
                             <br>
-                            <p><?= $product->content ?></p>
 
                         </div><!--/product-information-->
 					</div>
+                    <div class="col-xs-12">
+						<?= $product->content ?>
+                    </div>
 				</div><!--/product-details-->
 
                 <!--recommended_items-->
@@ -122,23 +115,34 @@ use yii\helpers\Url;
 						<div class="carousel-inner">
 
                         <!--open and close div by condition-->
-                        <?php $count = count($hits); $i=0; foreach ($hits as $hit): ?>
-							<?php if ($i % 3 == 0 ): ?>
-							<div class="item <?php if ($i == 0) echo 'active'; ?>">
+                        <?php $count = count($hits); $n=0; foreach ($hits as $hit): ?>
+
+							<?php $mainImgHit = $hit->getImage(); ?>
+
+							<?php if ($n % 3 == 0 ): ?>
+							<div class="item <?php if ($n == 0) echo 'active'; ?>">
 							<?php endif; ?>
 								<div class="col-sm-4">
 									<div class="product-image-wrapper">
 										<div class="single-products">
 											<div class="productinfo text-center">
-												<img src="<?= $mainImg->getUrl() ?>" alt="<?= $hit->name; ?>" />
+
+                                                <a href="/product/<?= $hit->id ?>">
+                                                    <img src="<?= $mainImgHit->getUrl('x80') ?>" alt="<?= $hit->name; ?>" />
+                                                </a>
+
 												<h2>$<?= $hit->price; ?></h2>
-												<p><a href="/product/<?= $hit->id ?>"><?= $hit->name; ?></p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+												<p><a href="/product/<?= $hit->id ?>"><?= get_words($hit->name, $count = 10) . '...' ?></a></p>
+
+                                                <a href="#" data-id="<?= $hit->id ?>" class="btn btn-fefault add-to-cart cart">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                    Add to cart
+                                                </a>
 											</div>
 										</div>
 									</div>
 								</div>
-							<?php $i++; if ($i % 3 == 0 || $i == $count): ?>
+							<?php $n++; if ($n % 3 == 0 || $n == $count): ?>
 							</div>
 							<?php endif; ?>
 						<?php endforeach; ?>

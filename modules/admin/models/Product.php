@@ -65,7 +65,7 @@ class Product extends \yii\db\ActiveRecord
             [['price'],'required'],
             [['name', 'keywords', 'description', 'img'], 'string', 'max' => 255],
 			[['image'], 'file', 'extensions' => 'png, jpg'],
-			[['gallery'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 4],
+			[['gallery'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 10],
         ];
     }
 
@@ -82,8 +82,8 @@ class Product extends \yii\db\ActiveRecord
             'price' => 'Price',
             'keywords' => 'Keywords (Meta tags)',
             'description' => 'Description (Meta tags)',
-            'image' => 'Image',
-            'gallery' => 'Gallery (4 files)',
+            'image' => 'Image (main)',
+            'gallery' => 'Gallery (max 10 files)',
             'hit' => 'Hit',
             'new' => 'New',
             'sale' => 'Sale',

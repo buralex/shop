@@ -118,7 +118,7 @@ a#scrollUp i {
 .fa-google-plus:hover {
   background: #CE3C2D; }
 
-.header-middle .container .row {
+.header-middle > .container .row {
   border-bottom: 1px solid #f5f5f5;
   margin-left: 0;
   margin-right: 0;
@@ -476,8 +476,8 @@ ul.sub-menu {
 .carousel-indicators li.active {
   background: #FE980F; }
 
-#slider-carousel.item {
-  padding-left: 100px; }
+#slider-carousel .item {
+  padding-left: 100px !important; }
 
 .pricing {
   position: absolute;
@@ -553,7 +553,8 @@ ul.sub-menu {
   z-index: 3; }
 
 .left-sidebar h2:after, h2.title:after {
-  content: " ";
+  content: "";
+  display: block;
   position: absolute;
   border: 1px solid #f5f5f5;
   bottom: 8px;
@@ -563,7 +564,8 @@ ul.sub-menu {
   z-index: -2; }
 
 .left-sidebar h2:before {
-  content: " ";
+  content: "";
+  display: block;
   position: absolute;
   background: #fff;
   bottom: -6px;
@@ -713,7 +715,8 @@ h2.title {
   margin: 0 15px;
   text-transform: uppercase;
   margin-bottom: 30px;
-  position: relative; }
+  position: relative;
+  z-index: 3; }
 
 .product-image-wrapper {
   border: 1px solid #F7F7F5;
@@ -747,7 +750,8 @@ h2.title {
   color: #696763; }
 
 .productinfo img {
-  width: 100%; }
+  display: block;
+  margin: 0 auto; }
 
 .productinfo {
   position: relative; }
@@ -880,11 +884,16 @@ h2.title {
   overflow: hidden; }
 
 #recommended-item-carousel .carousel-inner .item {
-  padding-left: 0; }
+  padding-left: 20px;
+  padding-right: 20px; }
 
 .recommended-item-control {
   position: absolute;
   top: 41%; }
+  .recommended-item-control.left {
+    left: 0; }
+  .recommended-item-control.right {
+    right: 0; }
 
 .recommended-item-control i {
   background: none repeat scroll 0 0 #FE980F;
@@ -1068,16 +1077,6 @@ h2.title {
 
 .share {
   margin-top: 15px; }
-
-.cart {
-  background: #FE980F;
-  border: 0 none;
-  border-radius: 0;
-  color: #FFFFFF;
-  font-family: 'Roboto', sans-serif;
-  font-size: 15px;
-  margin-bottom: 10px;
-  margin-left: 20px; }
 
 .shop-details-tab {
   border: 1px solid #F7F7F0;
@@ -2062,9 +2061,28 @@ product detail carousel
   padding: 0; }
 
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
-  width: 100%; }
+  margin: 0 auto; }
 
 .carousel-wrap {
   width: 100%; }
+
+.carousel-right, .carousel-left {
+  font-size: 30px;
+  top: 80px;
+  position: absolute; }
+
+.carousel-left {
+  left: -15px; }
+
+.carousel-right {
+  right: -15px; }
+
+/*---------------------------------------------------------
+                responsive
+----------------------------------------------------------*/
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 992px) {
+  #slider-carousel {
+    display: none; } }
 
 /*# sourceMappingURL=main.css.map */

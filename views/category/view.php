@@ -38,11 +38,14 @@ use yii\widgets\LinkPager;
 								<?php foreach ($products_arr as $product): ?>
 
 									<?php $mainImg = $product->getImage();?>
-                                    <div class="col-sm-4">
+                                    <div class="col-md-6 col-lg-4">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
-													<?= Html::img($mainImg->getUrl(), ['alt' => $product->name])?>
+                                                    <a href="/product/<?= $product->id ?>">
+														<?= Html::img($mainImg->getUrl('x150'), ['alt' => $product->name])?>
+                                                    </a>
+
                                                     <h2>$<?= $product->price ?></h2>
 
                                                     <p><a href="/product/<?= $product->id ?>"><?= $product->name ?></a></p>

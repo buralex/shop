@@ -23,19 +23,18 @@ use app\components\MenuWidget;
                     <div class="carousel-inner">
                         <div class="item active">
                             <div class="col-sm-6">
-                                <h1>SHOP</h1>
-                                <h2>Free E-Commerce Template</h2>
+                                <h1>Touch-Screen Laptop</h1>
+                                <h2>Asus - Q304UA 2-in-1 13.3"</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                             </div>
                             <div class="col-sm-6">
-                                <img src="/images/home/girl1.jpg" class="girl img-responsive" alt="" />
-                                <img src="/images/home/pricing.png"  class="pricing" alt="" />
+                                <img src="/yii2images/images/image-by-item-and-alias?item=Product20&dirtyAlias=0d03c16833-1.jpg" class="girl img-responsive" alt="" />
                             </div>
                         </div>
                         <div class="item">
                             <div class="col-sm-6">
                                 <h1>SHOP</h1>
-                                <h2>100% Responsive Design</h2>
+                                <h2>Acer - Aspire R 15 2-in-1 15.6"</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                             </div>
                             <div class="col-sm-6">
@@ -100,12 +99,16 @@ use app\components\MenuWidget;
                             <div class="row">
 								<?php foreach ($hits_arr as $hit): ?>
 
-									<?php $mainImg = $hit->getImage();?>
-                                    <div class="col-sm-4">
+									<?php $mainImgHit = $hit->getImage();?>
+
+                                    <div class="col-md-6 col-lg-4">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
                                                 <div class="productinfo text-center">
-													<?= Html::img($mainImg->getUrl(), ['alt' => $hit->name])?>
+                                                    <a href="/product/<?= $hit->id ?>">
+														<?= Html::img($mainImgHit->getUrl('x150'), ['alt' => $hit->name])?>
+                                                    </a>
+
                                                     <h2>$<?= $hit->price ?></h2>
                                                     <p><a href="/product/<?= $hit->id ?>"><?= $hit->name ?></a></p>
                                                     <a href="<?= Url::to(['cart/add', 'id' => $hit->id])?>" data-id="<?= $hit->id ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -146,6 +149,9 @@ use app\components\MenuWidget;
 
                             <!--open and close div by condition-->
 							<?php $count = count($hits); $i=0; foreach ($hits as $hit): ?>
+
+								<?php $mainImgHit = $hit->getImage();?>
+
 								<?php if ($i % 3 == 0 ): ?>
                                     <div class="item <?php if ($i == 0) echo 'active'; ?>">
 								<?php endif; ?>
@@ -153,10 +159,17 @@ use app\components\MenuWidget;
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="<?= $mainImg->getUrl() ?>" alt="<?= $hit->name; ?>" />
+
+                                                <a href="/product/<?= $hit->id ?>">
+                                                    <img src="<?= $mainImgHit->getUrl('x80') ?>" alt="<?= $hit->name; ?>" />
+                                                </a>
+
                                                 <h2>$<?= $hit->price; ?></h2>
-                                                <p><a href="/product/<?= $hit->id ?>"><?= $hit->name; ?></p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                <p><a href="/product/<?= $hit->id ?>"><?= get_words($hit->name, $count = 10) . '...' ?></a></p>
+                                                <a href="#" data-id="<?= $hit->id ?>" class="btn btn-fefault add-to-cart cart">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                    Add to cart
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

@@ -23,7 +23,7 @@ function showCart(cart) {
 $('.add-to-cart').on('click', function (e) {
     e.preventDefault();
     var id = $(this).data('id'),
-        qty = $('#qty').val();
+        qty = Math.abs( $('#qty').val() );
     $.ajax({
         url: '/cart/add',
         data: {id: id, qty: qty},
