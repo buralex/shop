@@ -27,87 +27,59 @@ use yii\helpers\Url;
             $gallery = $product->getImages();
             ?>
 
-            <div class="container">
-                <div id="main_area">
-                    <!-- Slider -->
-                    <div class="row">
-                        <div class="col-sm-6" id="slider-thumbs">
-                            <!-- Bottom switcher of slider -->
-                            <ul class="hide-bullets">
-                                <li class="col-sm-3">
-                                    <a class="thumbnail" id="carousel-selector-0">
-                                        <img src="http://placehold.it/150x150&text=zero">
-                                    </a>
-                                </li>
-
-                                <li class="col-sm-3">
-                                    <a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/150x150&text=1"></a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="col-xs-12" id="slider">
-                                <!-- Top part of the slider -->
-                                <div class="row">
-                                    <div class="col-sm-12" id="carousel-bounding-box">
-                                        <div class="carousel slide" id="myCarousel">
-                                            <!-- Carousel items -->
-                                            <div class="carousel-inner">
-                                                <div class="active item" data-slide-number="0">
-                                                    <img src="http://placehold.it/470x480&text=zero"></div>
-
-                                                <div class="item" data-slide-number="1">
-                                                    <img src="http://placehold.it/470x480&text=1"></div>
-
-                                            </div>
-                                            <!-- Carousel nav -->
-                                            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                                                <span class="glyphicon glyphicon-chevron-left"></span>
-                                            </a>
-                                            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                                                <span class="glyphicon glyphicon-chevron-right"></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/Slider-->
-                    </div>
-
-                </div>
-            </div>
-
 			<div class="col-sm-9 padding-right">
 				<div class="product-details"><!--product-details-->
 					<div class="col-sm-5">
-						<div class="view-product">
-							<img src="<?= $mainImg->getUrl() ?>" alt="" >
-						</div>
-						<div id="similar-product" class="carousel slide" data-ride="carousel">
 
-							<!-- Wrapper for slides -->
-							<div class="carousel-inner">
-								<?php $count = count($gallery); $i = 0; foreach($gallery as $img):?>
-									<?php if ($i % 3 == 0): ?>
-								    <div class="item <?php if ($i == 0) echo 'active'; ?>">
-									<?php endif;?>
-									    <a href=""><img src="<?= $img->getUrl('x84') ?>" alt="" /></a>
-									<?php $i++; if ($i % 3 == 0 || $i == $count): ?>
+                        <div class="container carousel-wrap">
+                            <div id="main_area">
+                                <!-- Slider -->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-xs-12" id="slider">
+                                            <!-- Top part of the slider -->
+                                            <div class="row">
+                                                <div class="col-sm-12" id="carousel-bounding-box">
+                                                    <div class="carousel slide" id="myCarousel">
+                                                        <!-- Carousel items -->
+                                                        <div class="carousel-inner">
+															<?php $k = 0; foreach($gallery as $img):?>
+                                                                <div class="<?php if ($k == 0) echo 'active'; ?> item" data-slide-number="<?= $k ?>">
+                                                                    <img src="<?= $img->getUrl('x200') ?>">
+                                                                </div>
+																<?php $k++; endforeach; ?>
+
+
+                                                        </div>
+                                                        <!-- Carousel nav -->
+                                                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                                            <span class="glyphicon glyphicon-chevron-left"></span>
+                                                        </a>
+                                                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-									<?php endif;?>
-								<?php endforeach; ?>
-							</div>
+                                    <div class="col-sm-12" id="slider-thumbs">
+                                        <!-- Bottom switcher of slider -->
+                                        <ul class="hide-bullets">
+											<?php $count = count($gallery); $i = 0; foreach($gallery as $img):?>
+                                                <li class="col-sm-3">
+                                                    <a class="thumbnail" id="carousel-selector-<?= $i ?>">
+                                                        <img src="<?= $img->getUrl() ?>">
+                                                    </a>
+                                                </li>
+												<?php $i++; endforeach; ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--/Slider-->
 
-							<!-- Controls -->
-							<a class="left item-control" href="#similar-product" data-slide="prev">
-								<i class="fa fa-angle-left"></i>
-							</a>
-							<a class="right item-control" href="#similar-product" data-slide="next">
-								<i class="fa fa-angle-right"></i>
-							</a>
-						</div>
+                            </div>
+                        </div>
 
 					</div>
 					<div class="col-sm-7">

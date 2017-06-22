@@ -161,7 +161,7 @@ var RGBChange = function () {
  -----------------------------------------*/
 
 $('#myCarousel').carousel({
-    interval: 5000
+    interval: 0
 });
 
 //Handles the carousel thumbnails

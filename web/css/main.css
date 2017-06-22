@@ -476,7 +476,7 @@ ul.sub-menu {
 .carousel-indicators li.active {
   background: #FE980F; }
 
-.item {
+#slider-carousel.item {
   padding-left: 100px; }
 
 .pricing {
@@ -2062,6 +2062,9 @@ product detail carousel
   padding: 0; }
 
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+  width: 100%; }
+
+.carousel-wrap {
   width: 100%; }
 
 /*# sourceMappingURL=main.css.map */
