@@ -47,7 +47,7 @@ use yii\helpers\Url;
                                                                 <div class="<?php if ($k == 0) echo 'active'; ?> item" data-slide-number="<?= $k ?>">
                                                                     <img src="<?= $img->getUrl('x200') ?>">
                                                                 </div>
-																<?php $k++; endforeach; ?>
+															<?php $k++; endforeach; ?>
 
 
                                                         </div>
